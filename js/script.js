@@ -1,6 +1,5 @@
-console.log("script.js loaded");
 
-var endpoint = "https://api.giphy.com/v1/gifs/search?api_key=pUs7ayGnN3GewPPzch4HddPqY9t94OUD&q=mango&limit=25&offset=0&rating=g&lang=en&bundle=messaging_non_clips";
+//var endpoint = "https://api.giphy.com/v1/gifs/search?api_key=pUs7ayGnN3GewPPzch4HddPqY9t94OUD&q=mango&limit=25&offset=0&rating=g&lang=en&bundle=messaging_non_clips";
 
 const gifContainer = document.querySelector("#gif-container");
 const fetchButton = document.querySelector("#fetch-gif-btn");
@@ -10,7 +9,10 @@ let images = [];
 
 async function fetchGifs(searchTerm = "cats") {
     try {
-        const response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=YOUR_API_KEY&q=${searchTerm}&limit=10&rating=g`);
+        const endpoint = `https://api.giphy.com/v1/gifs/search?api_key=pUs7ayGnN3GewPPzch4HddPqY9t94OUD&q=$mango&limit=25&offset=0&rating=g&lang=en&bundle=messaging_non_clips`;
+        
+
+        const response = await fetch(endpoint);
         const data = await response.json();
 
         // Clear previous images
@@ -33,3 +35,9 @@ function displayGifs() {
         gifContainer.innerHTML += `<div class="col-3 mb-3"><img src="${url}" class="img-fluid"></div>`;
     });
 }
+
+fetchButton.addEventListener("click", async () => {
+    const searchTerm = searchInput.value || "mangos"; // Default to "cats" if empty
+    await fetchGifs(searchTerm);
+    displayGifs();
+});
