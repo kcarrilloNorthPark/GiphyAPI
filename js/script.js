@@ -26,3 +26,10 @@ async function fetchGifs(searchTerm = "cats") {
         console.error("Error fetching GIFs:", error);
     }
 }
+
+function displayGifs() {
+    gifContainer.innerHTML = ""; // Clear container
+    images.forEach(url => {
+        gifContainer.innerHTML += `<div class="col-3 mb-3"><img src="${url}" class="img-fluid"></div>`;
+    });
+}
