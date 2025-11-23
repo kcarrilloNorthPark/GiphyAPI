@@ -7,7 +7,7 @@ const searchInput = document.querySelector("#gif-search");
 
 let images = [];
 
-async function fetchGifs(searchTerm = "cats") {
+async function fetchGifs(searchTerm = "mango") {
     try {
         const endpoint = `https://api.giphy.com/v1/gifs/search?api_key=pUs7ayGnN3GewPPzch4HddPqY9t94OUD&q=$mango&limit=25&offset=0&rating=g&lang=en&bundle=messaging_non_clips`;
         
@@ -37,7 +37,7 @@ function displayGifs() {
 }
 
 fetchButton.addEventListener("click", async () => {
-    const searchTerm = searchInput.value || "mangos"; // Default to "cats" if empty
+    const searchTerm = searchInput.value || "mango"; // Default to "mango" if input is empty
     await fetchGifs(searchTerm);
     displayGifs();
 });
