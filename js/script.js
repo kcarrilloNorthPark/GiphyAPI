@@ -8,3 +8,21 @@ const searchInput = document.querySelector("#gif-search");
 
 let images = [];
 
+async function fetchGifs(searchTerm = "cats") {
+    try {
+        const response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=YOUR_API_KEY&q=${searchTerm}&limit=10&rating=g`);
+        const data = await response.json();
+
+        // Clear previous images
+        images = [];
+
+        // Store original image URLs in the array
+        data.data.forEach(gif => {
+            images.push(gif.images.original.url);
+        });
+
+        console.log(images); // Preview in console
+    } catch (error) {
+        console.error("Error fetching GIFs:", error);
+    }
+}
